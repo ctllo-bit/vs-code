@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  code-server:
+    image: codercom/code-server:latest
+    container_name: code-server
+    restart: unless-stopped
+    ports:
+      - "5333:8080"    # 端口如果冲突请修改冒号前面的端口号，冒号后面的不要改。
+    volumes:
+      - "/var/apps/vs-code/shares/data/.config:/home/coder/.config"  # 配置文件路径
+      - "/var/apps/vs-code/shares/data/project:/home/coder/project"  # 项目路径
+    environment:
+      - PASSWORD=password
+      - TZ=Asia/Shanghai
+    network_mode: bridge

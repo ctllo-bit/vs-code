@@ -1,0 +1,38 @@
+{
+    "docker-project":
+    {
+        "projects":
+        [
+            {
+                "name": "vs-code",
+                "path": "docker"
+            }
+        ]
+    },
+    "data-share":
+    {
+        "shares":
+        [
+            {
+                "name": "vs-code",
+                "permission":
+                {
+                    "rw":
+                    [
+                        "docker-vs-code"
+                    ]
+                }
+            },
+            {
+                "name": "vs-code/data",
+                "permission":
+                {
+                    "rw":
+                    [
+                        "docker-vs-code"
+                    ]
+                }
+            }
+        ]
+    }
+}

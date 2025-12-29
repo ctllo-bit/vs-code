@@ -1,0 +1,24 @@
+{
+    ".url": {
+        "vs-code.main": {
+            "title": "code-server",
+            "icon": "images/icon_{0}.png",
+            "type": "iframe",
+            "protocol": "http",
+            "url": "/cgi/ThirdParty/vs-code/index.cgi/",
+            "allUsers": false
+        },
+        "vs-code.admin": {
+            "title": "管理后台",
+            "icon": "images/admin-icon-{0}.png",
+            "type": "url",
+            "protocol": "http",
+            "port": "5333",
+            "url": "/",
+            "allUsers": false
+        }
+    }
+}
+
+
+            
