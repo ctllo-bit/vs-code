@@ -1,12 +1,8 @@
 #!/bin/sh
 
-# 获取当前 IP
-REQUEST_IP=$(hostname -I | awk '{print $1}')
-
 # 添加 HTTP 响应头
 echo "Content-Type: application/javascript; charset=utf-8"
 echo ""
-
 
 cat <<EOF
   const host = window.location.hostname;     
@@ -38,13 +34,6 @@ cat <<EOF
       window.open(targetURL, '_top');
       window.alert(5 + 6);
   }
-
-
-  window.FNOS_APP = {
-    name: "FUCKYOU",
-    version: "${REQUEST_IP}",
-    port: "${REQUEST_URI}"
-  };
 
   console.log("CGI加载的JS文件成功！");
 EOF
