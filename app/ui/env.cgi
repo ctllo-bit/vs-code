@@ -9,22 +9,43 @@ echo ""
 
 
 cat <<EOF
+  const host = window.location.hostname;     
+  const isInternalIp = /^(?:10|127|172\.(?:1[6-9]|2\d|3[01])|192\.168|169\.254|100\.64)\./.test(host) || host === 'localhost';
+
+  const protocol= window.location.protocol;
+  const hostname=isInternalIp ? host : ('vs-code.'+ host);
+  const port = isInternalIp ? '5333' : window.location.port;
+  const airPort=port?(':'+port):'';
+
+  // 构建目标URL
+  const targetURL =protocol + "//" + hostname + airPort;
+
+  // 尝试获取当前父级 iframe 元素
+  let iframe = window.frameElement;
+  if(iframe){
+      iframe.frameBorder = "0";
+      iframe.setAttribute("webkitallowfullscreen", "true");
+      iframe.setAttribute("mozallowfullscreen", "true");
+
+      //沙盒属性
+      iframe.sandbox="allow-same-origin allow-scripts allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-downloads"
+      iframe.src =targetURL;
+
+      console.log('✅ 修改iframe成功！');
+  }else{
+      //飞牛APP因跨源（cross-origin)获取不了，则直接跳转
+      //window.location.href = targetURL;
+      window.open(targetURL, '_top');
+      window.alert(5 + 6);
+  }
 
 
-window.FNOS_APP = {
-  name: "FUCKYOU",
-  version: "${REQUEST_IP}",
-  port: "${REQUEST_URI}"
-};
-// 检查是否是内网IP
-function isInternalIp(url) {
-  const privateIpv4 = /^(?:10|127|172\.(?:1[6-9]|2\d|3[01])|192\.168|169\.254|100\.64)\./;
-  return privateIpv4.test(url) || url === 'localhost';
-}
+  window.FNOS_APP = {
+    name: "FUCKYOU",
+    version: "${REQUEST_IP}",
+    port: "${REQUEST_URI}"
+  };
 
-
-console.log("CGI加载的JS文件成功！");
+  console.log("CGI加载的JS文件成功！");
 EOF
-
-
 

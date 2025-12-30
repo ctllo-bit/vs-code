@@ -9,40 +9,9 @@
 <body>
   <script src="/cgi/ThirdParty/vs-code/env.cgi/"></script>
   <script>
-    // 使用前端访问的协议和端口调用API，适配HTTPS和无端口域名
-    const protocol = window.location.protocol; // http: 或 https:
-    const host = window.location.hostname;     // 域名，不包含端口
-    const port = window.location.port || (protocol === 'https:' ? '443' : '80');// 端口号，HTTPS默认443，HTTP默认80时会返回空字符串
-
-    // console.log(FNOS_APP.name);
-    // console.log(FNOS_APP.version);
-    // console.log(FNOS_APP.port);
-
-    let targetURL ="";
-    if(isInternalIp(host)){
-      targetURL=window.location.origin.replace(/:\d+$/, '') + ":5333";//内网
-    }else{
-      targetURL=protocol + "//vs-code." + host + ":" + port + "/?folder=/home/coder/project/";//中继
-    }
-
-    // 尝试获取当前父级 iframe 元素
-    let iframe = window.frameElement;
-    if(iframe){
-        iframe.frameBorder = "0";
-        iframe.setAttribute("webkitallowfullscreen", "true");
-        iframe.setAttribute("mozallowfullscreen", "true");
-
-        //沙盒属性
-        iframe.sandbox="allow-same-origin allow-scripts allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-downloads"
-        iframe.src =targetURL;
-
-        console.log('✅ 修改iframe成功！');
-    }else{
-        //飞牛APP因跨源（cross-origin)获取不了，则直接跳转
-        //window.location.href = targetURL;
-        window.open(targetURL, '_top');
-        window.alert(5 + 6);
-    }
+    console.log(FNOS_APP.name);
+    console.log(FNOS_APP.version);
+    console.log(FNOS_APP.port);
   </script> 
 </body>
 </html>
