@@ -4,9 +4,8 @@
             "title": "code-server",
             "icon": "images/icon_{0}.png",
             "type": "iframe",
-            "protocol": "http",
             "url": "/cgi/ThirdParty/vs-code/index.cgi/",
-            "allUsers": false
+            "allUsers": true
         },
         "vs-code.admin": {
             "title": "管理后台",
@@ -15,7 +14,7 @@
             "protocol": "http",
             "port": "5333",
             "url": "/",
-            "allUsers": false
+            "allUsers": true
         }
     }
 }

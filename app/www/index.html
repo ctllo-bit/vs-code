@@ -1,33 +1,38 @@
 <!DOCTYPE html>
-<!-- 声明文档类型为 HTML5 -->
 <html lang="zh-CN">
 <head>
-    <!-- 字符编码：确保中文/特殊字符正常显示 -->
     <meta charset="UTF-8">
-    <!-- 视口设置：适配移动端 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- 页面标题：浏览器标签显示 -->
-    <title>应用中心教学演示</title>
-    
-    <!-- 引入外部 CSS 样式文件（核心知识点：外部样式引入） -->
-    <!-- 路径说明：./ 表示当前目录，css/style.css 是样式文件的相对路径 -->
+    <title>Monaco in fnOS</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <!-- 1. Logo 展示区（核心知识点：图片引入） -->
-    <div class="logo-container">
-        <!-- src：图片路径；alt：图片加载失败时的替代文本（无障碍/SEO） -->
-        <img src="./images/logo.png" alt="教学演示Logo" class="logo">
-    </div>
+  <script>
+    // 使用前端访问的协议和端口调用API，适配HTTPS和无端口域名
+    const protocol = window.location.protocol; // http: 或 https:
+    const host = window.location.hostname;     // 域名，不包含端口
+    const port = window.location.port || (protocol === 'https:' ? '443' : '80');// 端口号，HTTPS默认443，HTTP默认80时会返回空字符串
 
-    <div class="hello-container">
-        <h1 id="helloText">Welcome to the fnOS AppCenter</h1>
-        <p class="tips">点击上方文字体验JS交互</p>
-    </div>
+    let targetURL= protocol + "//vs-code-admin." + host + ":" + port + "/?folder=/home/coder/project/";
 
-    <!-- 2. 引入外部 JS 文件（核心知识点：JS 文件引入） -->
-    <!-- 建议放在 body 底部：确保 DOM 加载完成后再执行 JS，避免获取不到元素 -->
-    <!-- 路径说明：./js/main.js 是JS文件的相对路径 -->
-    <script src="./js/main.js"></script>
+    // 尝试获取当前父级 iframe 元素
+    let iframe = window.frameElement;
+    if(iframe){
+        iframe.frameBorder = "0";
+        iframe.setAttribute("webkitallowfullscreen", "true");
+        iframe.setAttribute("mozallowfullscreen", "true");
+
+        //沙盒属性
+        iframe.sandbox="allow-same-origin allow-scripts allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-downloads"
+        iframe.src =targetURL;
+        
+        console.log('✅ 修改iframe成功！');
+    }else{
+        //飞牛APP因跨源（cross-origin)获取不了，则直接跳转
+        //window.location.href = targetURL;
+        window.open(targetURL, '_top');
+        window.alert(5 + 6);
+    }
+  </script>
 </body>
 </html>
