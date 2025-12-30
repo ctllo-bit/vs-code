@@ -13,7 +13,7 @@
     const host = window.location.hostname;     // 域名，不包含端口
     const port = window.location.port || (protocol === 'https:' ? '443' : '80');// 端口号，HTTPS默认443，HTTP默认80时会返回空字符串
 
-    let targetURL= protocol + "//vs-code-admin." + host + ":" + port + "/?folder=/home/coder/project/";
+    let targetURL= protocol + "//vs-code." + host + ":" + port + "/?folder=/home/coder/project/";
 
     // 尝试获取当前父级 iframe 元素
     let iframe = window.frameElement;
