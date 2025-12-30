@@ -9,8 +9,13 @@ services:
       - "5333:8080"    # 端口如果冲突请修改冒号前面的端口号，冒号后面的不要改。
     volumes:
       - "/var/apps/vs-code/shares/data/.config:/home/coder/.config"  # 配置文件路径
-      - "/var/apps/vs-code/shares/data/project:/home/coder/project"  # 项目路径
+      - "/vol1/1000/VscodeProject:/home/coder/project"  # 项目路径
+    user: "1000:1001"
     environment:
       - PASSWORD=password
       - TZ=Asia/Shanghai
+      - PUID=1000
+      - PGID=1001
+    # 增加下面这一行，进入网页直接就是你的项目
+    command: --auth password --bind-addr 0.0.0.0:8080 /home/coder/project
     network_mode: bridge
