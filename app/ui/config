@@ -9,7 +9,7 @@
         },
         "vs-code.Application": {
             "title": "VS Code外链版",
-            "icon": "images/admin-icon-{0}.png",
+            "icon": "images/code_icon_{0}.png",
             "type": "url",
             "protocol": "http",
             "port": "5333",
