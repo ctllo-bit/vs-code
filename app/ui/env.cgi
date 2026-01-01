@@ -22,6 +22,7 @@ cat <<EOF
       iframe.frameBorder = "0";
       iframe.setAttribute("webkitallowfullscreen", "true");
       iframe.setAttribute("mozallowfullscreen", "true");
+      iframe.setAttribute('allow', 'clipboard-read; clipboard-write');
 
       //沙盒属性
       iframe.sandbox="allow-same-origin allow-scripts allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-downloads"
